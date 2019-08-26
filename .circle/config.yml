@@ -35,4 +35,3 @@ workflows:
   build:
     jobs:
       - build_image:
-
