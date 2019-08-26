@@ -17,7 +17,7 @@ references:
       command: |
         docker login quay.io -u="${QUAY_USER}" -p="${QUAY_TOKEN}"
         docker-pull -f deploy/build.config
-        docker-build -f deploy/build.confing
+        docker-build -f deploy/build.config
         docker-push -f deploy/build.config
   
 jobs:
