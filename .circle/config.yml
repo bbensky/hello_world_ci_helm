@@ -30,23 +30,9 @@ references:
         - *set_environment_variables
         - *build_image
 
-
 workflows:
   version: 2
   build:
     jobs:
       - build_image:
-         filters:
-           branches:
-            only:
-              - master
 
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build_image:
-          filters:
-            branches:
-              only:
-                - master
