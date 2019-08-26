@@ -1,0 +1,1 @@
+Hello World app for CI and Helm practice.
