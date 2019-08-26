@@ -20,15 +20,15 @@ references:
         docker-build -f deploy/build.confing
         docker-push -f deploy/build.config
   
-  jobs:
-    build_image:
-      docker:
-        - image: quay.io/reactiveops/ci-images:v9.2-stretch
-      steps:
-        - checkout
-        - setup_remote_docker
-        - *set_environment_variables
-        - *build_image
+jobs:
+  build_image:
+    docker:
+      - image: quay.io/reactiveops/ci-images:v9.2-stretch
+    steps:
+      - checkout
+      - setup_remote_docker
+      - *set_environment_variables
+      - *build_image
 
 workflows:
   version: 2
