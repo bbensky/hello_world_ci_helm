@@ -19,6 +19,13 @@ references:
         docker-pull -f deploy/build.config
         docker-build -f deploy/build.config
         docker-push -f deploy/build.config
+
+  deploy_to_kube: &deploy_to_kube
+    run:
+      name: Deploy to Cluster
+      command: |
+        prepare-kubectl
+        helm-deploy -f deploy/deploy.config
   
 jobs:
   build_image:
@@ -29,12 +36,26 @@ jobs:
       - setup_remote_docker
       - *set_environment_variables
       - *build_image
+  deploy:
+    docker:
+      - image: quay.io/reactiveops/ci-images:v9.2-stretch
+    steps:
+      - checkout
+      - setup_remote_docker
+      - *set_environment_variables
+      - *deploy_to_kube
 
 workflows:
   version: 2
   build:
     jobs:
       - build_image:
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build_image
           filters:
             branches:
               only: master
