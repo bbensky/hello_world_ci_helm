@@ -4,7 +4,7 @@
 
 image:
   repository: quay.io/bbensky/hello-world-ci-helm
-  tag: latest
+  tag: master
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
